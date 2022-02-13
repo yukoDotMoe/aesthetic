@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html><head><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <link rel="icon" href="https://xn--z7x.xn--6frz82g/icon.gif">
+  <title>「akiyomi」</title>
+    <style>
+        * {
+            margin: 0px;
+            padding: 0px;
+            box-sizing: border-box;
+        }
+        #autoplay {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            min-width: 100%;
+            min-height: 100%;
+            width: auto;
+            height: auto;
+            z-index: -100;
+            -webkit-transform: translateX(-50%) translateY(-50%);
+            transform: translateX(-50%) translateY(-50%);
+            overflow: hidden;
+        }
+        img {
+            position: absolute;
+            bottom: 10px;
+            left: 10px;
+        }
+        .term {
+            margin: 0;
+            position: absolute;
+            top: 42%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            overflow: auto;
+            font-size: 13px;
+            background-color: #0C090A;
+            color: #b3b8c3;
+            width: 333px;
+            border: solid 2px #1e1e1e;
+            margin-left: auto;
+            margin-right: auto;
+            padding: 3px;
+            word-wrap: break-word;
+        }
+        .links {
+            background-color: #0C090A!important;
+            text-decoration: none;
+            color: #7d8fa4!important;
+        }
+        .links:hover {
+            background-color: #7d9fa4!important;
+            color: #0C090A!important;
+            cursor: pointer;
+        }
+        body { background: black; }
+    </style>
+  </head>
+  <body>
+<script>
+/* this js only exists because browsers dont allow fun autoplay vids by default anymore */
+document.addEventListener("DOMContentLoaded", function() {
+  let urltrim = window.location.hostname;
+  document.getElementById("codename").innerHTML = urltrim.replace('akiyomi.', "");
+  let bg = document.getElementById("autoplay");
+  let p = bg.play();
+  let ap = true; if(p !== undefined){p.then(function() {}).catch(function(error){ap = false;}).then(function() {
+  if (ap) {
+    /* was going to do something clever here to avoid the frozen vid on no autoplay and no js,
+       where someone without js and autoplay would also see the gif,
+       but that would break the case where someone has autoplay enabled but not js */
+  } else {
+    let newbg = document.createElement('img');
+    newbg.id = "autoplay";
+    newbg.src = "https://xn--z7x.xn--6frz82g/_/browserissues.gif";
+    document.body.replaceChild(newbg, bg);
+    document.body.addEventListener("click", function f() {
+      document.body.replaceChild(bg, newbg);
+      bg.volume = 0;
+      bg.play();
+      document.body.removeEventListener("click", f);
+      let v = setInterval(function(){bg.volume+=0.015; if(bg.volume > .9) {clearInterval(v);}},420);
+    });
+  }
+});}});
+</script>
+<pre class="term">
+[<b style="color: #eeeeee">cat</b>:<span style="color: #a47996">~</span>]$ lsb_release -a
+<span style="color: #7d8fa4">
+No LSB modules are available.
+Distributor ID: akiyomi
+Description:  akiyomi.work /tokyo /codes 13.2
+Release:    13.2
+Codename:   <span id="codename"></span>
+</span>
+[<b style="color: #eeeeee">cat</b>:<span style="color: #a47996">~</span>]$ ls links/
+<a class="links" href="https://github.com/yukoDotMoe"><b>gh</b></a>  <a class="links" href="mailto:hi@akiyomi.tokyo"><b>mail</b></a></pre>
+        <video id="autoplay" autoplay="" loop="" playsinline="" src="_/bg.webm"></video>
+
+</body></html>
