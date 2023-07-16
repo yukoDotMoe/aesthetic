@@ -10,12 +10,12 @@ echo -e "==================================================="
 echo -e ""
 startTime=$(date +%s)
 vg_name=$(vgs --no-headings -o vg_name | awk '{print $1; exit}')
-home_lvs_output=$(lvs --no-headings -o lv_size /dev/$vg_name/home)
-home_lsize=$(echo -e "$home_lvs_output" | awk '{print $1}')
+home_lsize_raw=$(echo -e "$home_lvs_output" | awk '{print $1}')
+home_lsize=$(echo "$home_lsize_raw" | sed 's/<//g')
 
 root_lvs_output=$(lvs --no-headings -o lv_size /dev/$vg_name/root)
-root_lsize=$(echo -e "$root_lvs_output" | awk '{print $1}')
-
+root_lsize_raw=$(echo -e "$root_lvs_output" | awk '{print $1}')
+root_lsize=$(echo "$root_lsize_raw" | sed 's/<//g')
 
 
 mountS() {
