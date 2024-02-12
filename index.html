@@ -1,101 +1,169 @@
 <!DOCTYPE html>
-<html><head><meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <link rel="icon" href="https://xn--z7x.xn--6frz82g/icon.gif">
-  <title>「akiyomi」</title>
-    <style>
-        * {
-            margin: 0px;
-            padding: 0px;
-            box-sizing: border-box;
-        }
-        #autoplay {
-            position: fixed;
-            top: 50%;
-            left: 50%;
-            min-width: 100%;
-            min-height: 100%;
-            width: auto;
-            height: auto;
-            z-index: -100;
-            -webkit-transform: translateX(-50%) translateY(-50%);
-            transform: translateX(-50%) translateY(-50%);
-            overflow: hidden;
-        }
-        img {
-            position: absolute;
-            bottom: 10px;
-            left: 10px;
-        }
-        .term {
-            margin: 0;
-            position: absolute;
-            top: 42%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            overflow: auto;
-            font-size: 13px;
-            background-color: #0C090A;
-            color: #b3b8c3;
-            width: 333px;
-            border: solid 2px #1e1e1e;
-            margin-left: auto;
-            margin-right: auto;
-            padding: 3px;
-            word-wrap: break-word;
-        }
-        .links {
-            background-color: #0C090A!important;
-            text-decoration: none;
-            color: #7d8fa4!important;
-        }
-        .links:hover {
-            background-color: #7d9fa4!important;
-            color: #0C090A!important;
-            cursor: pointer;
-        }
-        body { background: black; }
-    </style>
-  </head>
-  <body>
-<script>
-/* this js only exists because browsers dont allow fun autoplay vids by default anymore */
-document.addEventListener("DOMContentLoaded", function() {
-  let urltrim = window.location.hostname;
-  document.getElementById("codename").innerHTML = urltrim.replace('akiyomi.', "");
-  let bg = document.getElementById("autoplay");
-  let p = bg.play();
-  let ap = true; if(p !== undefined){p.then(function() {}).catch(function(error){ap = false;}).then(function() {
-  if (ap) {
-    /* was going to do something clever here to avoid the frozen vid on no autoplay and no js,
-       where someone without js and autoplay would also see the gif,
-       but that would break the case where someone has autoplay enabled but not js */
-  } else {
-    let newbg = document.createElement('img');
-    newbg.id = "autoplay";
-    newbg.src = "https://xn--z7x.xn--6frz82g/_/browserissues.gif";
-    document.body.replaceChild(newbg, bg);
-    document.body.addEventListener("click", function f() {
-      document.body.replaceChild(bg, newbg);
-      bg.volume = 0;
-      bg.play();
-      document.body.removeEventListener("click", f);
-      let v = setInterval(function(){bg.volume+=0.015; if(bg.volume > .9) {clearInterval(v);}},420);
-    });
-  }
-});}});
-</script>
-<pre class="term">
-[<b style="color: #eeeeee">cat</b>:<span style="color: #a47996">~</span>]$ lsb_release -a
-<span style="color: #7d8fa4">
-No LSB modules are available.
-Distributor ID: akiyomi
-Description:  akiyomi.work /tokyo /codes 13.2
-Release:    13.2
-Codename:   <span id="codename"></span>
-</span>
-[<b style="color: #eeeeee">cat</b>:<span style="color: #a47996">~</span>]$ ls links/
-<a class="links" href="https://github.com/yukoDotMoe"><b>gh</b></a>  <a class="links" href="mailto:hi@akiyomi.tokyo"><b>mail</b></a></pre>
-        <video id="autoplay" autoplay="" loop="" playsinline="" src="https://cdn.upload.systems/uploads/xpVnMyHg.webm"></video>
+<html lang="en">
 
-</body></html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Primary Meta Tags -->
+<title>king vamp yuko 🩸</title>
+<meta name="title" content="king vamp yuko 🩸" />
+<meta name="description" content="trung binh phan mem binh duong" />
+
+<!-- Open Graph / Facebook -->
+<meta property="og:type" content="website" />
+<meta property="og:url" content="https://metatags.io/" />
+<meta property="og:title" content="king vamp yuko 🩸" />
+<meta property="og:description" content="trung binh phan mem binh duong" />
+<meta property="og:image" content="https://metatags.io/images/meta-tags.png" />
+
+<!-- Twitter -->
+<meta property="twitter:card" content="summary_large_image" />
+<meta property="twitter:url" content="https://metatags.io/" />
+<meta property="twitter:title" content="king vamp yuko 🩸" />
+<meta property="twitter:description" content="trung binh phan mem binh duong" />
+<meta property="twitter:image" content="https://metatags.io/images/meta-tags.png" />
+
+<!-- Meta Tags Generated with https://metatags.io -->
+    <!-- Tailwind CSS CDN -->
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/notyf@3/notyf.min.css">
+    <style>
+        @keyframes glow-up {
+            0% {
+                box-shadow: 0 0 10px #48bb78;
+            }
+
+            50% {
+                box-shadow: 0 0 20px #48bb78;
+            }
+
+            100% {
+                box-shadow: 0 0 10px #48bb78;
+            }
+        }
+
+        .glow-up {
+            animation: glow-up 1s ease-in-out;
+        }
+    </style>
+</head>
+
+<body class="bg-gray-100 p-4">
+    <form id="fileForm" class="mb-8">
+        <label for="fileInput" class="block font-medium mb-2">😿 vui lòng cung cấp file .def</label>
+        <input type="file" id="fileInput" accept=".def" class="border border-gray-300 rounded px-4 py-2 mb-4">
+    </form>
+
+    <div id="fields" class="grid grid-cols-2 gap-4 mb-4"></div>
+
+    <textarea id="fileContent" rows="10"
+        class="w-full border border-gray-300 rounded px-4 py-2 mb-4 transition-all duration-500"
+        readonly></textarea>
+
+    <button id="editBtn" class="bg-blue-500 text-white rounded px-4 py-2">🤑🤑🤑</button>
+
+    <!-- Toastify JS -->
+    <script src="https://cdn.jsdelivr.net/npm/notyf@3/notyf.min.js"></script>
+    <script>
+        var notyf = new Notyf({
+            position: {
+                    x: 'center',
+                    y: 'top',
+                }
+        });
+
+        document.getElementById('fileInput').addEventListener('change', function (e) {
+            const file = e.target.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function (e) {
+                    const content = e.target.result;
+                    document.getElementById('fileContent').value = content;
+                    displayFields(content);
+                    document.getElementById('editBtn').disabled = false;
+                    notyf.success('File đã được tải thành công!');
+                }
+                reader.readAsText(file);
+            }
+        });
+
+        document.getElementById('editBtn').addEventListener('click', function () {
+            if (document.getElementById('fileContent').value == "") return notyf.error("👮‍♂️ chưa tải file lên mà")
+            const fields = document.querySelectorAll('.decrypted-input');
+            let updatedContent = '';
+            fields.forEach(field => {
+                const key = field.previousElementSibling.value;
+                let value = field.value;
+                if (key === 'TCDL' || key === 'TCDM') {
+                    updatedContent += `[${key}]${value}\n`;
+                } else {
+                    const encryptedValue = encodeText(value);
+                    updatedContent += `[${key}]${encryptedValue}\n`;
+                }
+            });
+            document.getElementById('fileContent').value = updatedContent;
+            document.getElementById('fileContent').classList.add('glow-up');
+            document.getElementById('fileContent').readOnly = true;
+            notyf.success('Mã hoá lại thành công!');
+            setTimeout(() => {
+                document.getElementById('fileContent').classList.remove('glow-up');
+            }, 1000);
+        });
+
+        function displayFields(content) {
+            const lines = content.split('\n');
+            const fieldsDiv = document.getElementById('fields');
+            fieldsDiv.innerHTML = '';
+            lines.forEach(line => {
+                if (line.includes('[') && line.includes(']')) {
+                    const key = line.substring(line.indexOf('[') + 1, line.indexOf(']'));
+                    const value = line.substring(line.indexOf(']') + 1);
+                    const fieldDiv = document.createElement('div');
+                    if (key === 'TCDL' || key === 'TCDM') {
+                        fieldDiv.innerHTML = `<input type="text" value="${key}" class="border border-gray-300 rounded px-4 py-2" readonly>
+                                              <input type="text" value="${value}" class="border border-gray-300 rounded px-4 py-2 decrypted-input">`;
+                    } else {
+                        const decryptedValue = gfDeCodeText(value);
+                        fieldDiv.innerHTML = `<input type="text" value="${key}" class="border border-gray-300 rounded px-4 py-2" readonly>
+                                              <input type="text" value="${decryptedValue}" class="border border-gray-300 rounded px-4 py-2 decrypted-input">`;
+                    }
+                    fieldsDiv.appendChild(fieldDiv);
+                }
+            });
+        }
+
+        function gfDeCodeText(pStrText) {
+            let text = "";
+            try {
+                let num = 1;
+                let num2 = pStrText.length;
+                let num3 = num;
+                while (num3 <= num2) {
+                    text += String.fromCharCode(pStrText.charCodeAt(num3 - 1) - 24);
+                    num3 += 1;
+                }
+            } catch (ex) {
+                console.error("\nmdlFile - gfDeCodeText\n", ex);
+            }
+            return text;
+        }
+
+        function encodeText(pStrText) {
+            let text = "";
+            try {
+                let num = 1;
+                let num2 = pStrText.length;
+                let num3 = num;
+                while (num3 <= num2) {
+                    text += String.fromCharCode(pStrText.charCodeAt(num3 - 1) + 24);
+                    num3 += 1;
+                }
+            } catch (ex) {
+                console.error("\nmdlFile - encodeText\n", ex);
+            }
+            return text;
+        }
+    </script>
+</body>
+
+</html>
