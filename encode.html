@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Primary Meta Tags -->
+<title>king vamp yuko 🩸</title>
+<meta name="title" content="king vamp yuko 🩸" />
+<meta name="description" content="trung binh phan mem binh duong" />
+
+<!-- Open Graph / Facebook -->
+<meta property="og:type" content="website" />
+<meta property="og:url" content="https://metatags.io/" />
+<meta property="og:title" content="king vamp yuko 🩸" />
+<meta property="og:description" content="trung binh phan mem binh duong" />
+<meta property="og:image" content="https://metatags.io/images/meta-tags.png" />
+
+<!-- Twitter -->
+<meta property="twitter:card" content="summary_large_image" />
+<meta property="twitter:url" content="https://metatags.io/" />
+<meta property="twitter:title" content="king vamp yuko 🩸" />
+<meta property="twitter:description" content="trung binh phan mem binh duong" />
+<meta property="twitter:image" content="https://metatags.io/images/meta-tags.png" />
+
+<!-- Meta Tags Generated with https://metatags.io -->
+    <!-- Tailwind CSS CDN -->
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/notyf@3/notyf.min.css">
+    <style>
+        @keyframes glow-up {
+            0% {
+                box-shadow: 0 0 10px #48bb78;
+            }
+
+            50% {
+                box-shadow: 0 0 20px #48bb78;
+            }
+
+            100% {
+                box-shadow: 0 0 10px #48bb78;
+            }
+        }
+
+        .glow-up {
+            animation: glow-up 1s ease-in-out;
+        }
+    </style>
+</head>
+
+<body class="bg-gray-100 p-4">
+    <form id="fileForm" class="mb-8">
+        <label for="fileInput" class="block font-medium mb-2">😿 vui lòng cung cấp file .def</label>
+        <input type="file" id="fileInput" accept=".def" class="border border-gray-300 rounded px-4 py-2 mb-4">
+    </form>
+
+    <div id="fields" class="grid grid-cols-2 gap-4 mb-4"></div>
+
+    <textarea id="fileContent" rows="10"
+        class="w-full border border-gray-300 rounded px-4 py-2 mb-4 transition-all duration-500"
+        readonly></textarea>
+
+    <button id="editBtn" class="bg-blue-500 text-white rounded px-4 py-2">🤑🤑🤑</button>
+
+    <!-- Toastify JS -->
+    <script src="https://cdn.jsdelivr.net/npm/notyf@3/notyf.min.js"></script>
+    <script>
+        var notyf = new Notyf({
+            position: {
+                    x: 'center',
+                    y: 'top',
+                }
+        });
+
+        document.getElementById('fileInput').addEventListener('change', function (e) {
+            const file = e.target.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function (e) {
+                    const content = e.target.result;
+                    document.getElementById('fileContent').value = content;
+                    displayFields(content);
+                    document.getElementById('editBtn').disabled = false;
+                    notyf.success('File đã được tải thành công!');
+                }
+                reader.readAsText(file);
+            }
+        });
+
+        document.getElementById('editBtn').addEventListener('click', function () {
+            if (document.getElementById('fileContent').value == "") return notyf.error("👮‍♂️ chưa tải file lên mà")
+            const fields = document.querySelectorAll('.decrypted-input');
+            let updatedContent = '';
+            fields.forEach(field => {
+                const key = field.previousElementSibling.value;
+                let value = field.value;
+                if (key === 'TCDL' || key === 'TCDM') {
+                    updatedContent += `[${key}]${value}\n`;
+                } else {
+                    const encryptedValue = encodeText(value);
+                    updatedContent += `[${key}]${encryptedValue}\n`;
+                }
+            });
+            document.getElementById('fileContent').value = updatedContent;
+            document.getElementById('fileContent').classList.add('glow-up');
+            document.getElementById('fileContent').readOnly = true;
+            notyf.success('Mã hoá lại thành công!');
+            setTimeout(() => {
+                document.getElementById('fileContent').classList.remove('glow-up');
+            }, 1000);
+        });
+
+        function displayFields(content) {
+            const lines = content.split('\n');
+            const fieldsDiv = document.getElementById('fields');
+            fieldsDiv.innerHTML = '';
+            lines.forEach(line => {
+                if (line.includes('[') && line.includes(']')) {
+                    const key = line.substring(line.indexOf('[') + 1, line.indexOf(']'));
+                    const value = line.substring(line.indexOf(']') + 1);
+                    const fieldDiv = document.createElement('div');
+                    if (key === 'TCDL' || key === 'TCDM') {
+                        fieldDiv.innerHTML = `<input type="text" value="${key}" class="border border-gray-300 rounded px-4 py-2" readonly>
+                                              <input type="text" value="${value}" class="border border-gray-300 rounded px-4 py-2 decrypted-input">`;
+                    } else {
+                        const decryptedValue = gfDeCodeText(value);
+                        fieldDiv.innerHTML = `<input type="text" value="${key}" class="border border-gray-300 rounded px-4 py-2" readonly>
+                                              <input type="text" value="${decryptedValue}" class="border border-gray-300 rounded px-4 py-2 decrypted-input">`;
+                    }
+                    fieldsDiv.appendChild(fieldDiv);
+                }
+            });
+        }
+
+        function gfDeCodeText(pStrText) {
+            let text = "";
+            try {
+                let num = 1;
+                let num2 = pStrText.length;
+                let num3 = num;
+                while (num3 <= num2) {
+                    text += String.fromCharCode(pStrText.charCodeAt(num3 - 1) - 24);
+                    num3 += 1;
+                }
+            } catch (ex) {
+                console.error("\nmdlFile - gfDeCodeText\n", ex);
+            }
+            return text;
+        }
+
+        function encodeText(pStrText) {
+            let text = "";
+            try {
+                let num = 1;
+                let num2 = pStrText.length;
+                let num3 = num;
+                while (num3 <= num2) {
+                    text += String.fromCharCode(pStrText.charCodeAt(num3 - 1) + 24);
+                    num3 += 1;
+                }
+            } catch (ex) {
+                console.error("\nmdlFile - encodeText\n", ex);
+            }
+            return text;
+        }
+    </script>
+</body>
+
+</html>
